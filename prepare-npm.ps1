@@ -59,4 +59,4 @@ Write-Host "🧪 To test locally:" -ForegroundColor Yellow
 Write-Host "   cd $PACKAGE_DIR"
 Write-Host "   npm link"
 Write-Host "   cd ../test-project"
-Write-Host "   npx antigravity-devkit-vue-aspnet init`n"
+Write-Host "   npx antigravity-devkit init`n"

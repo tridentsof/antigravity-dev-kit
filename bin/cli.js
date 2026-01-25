@@ -109,10 +109,10 @@ function showHelp() {
 INSTALLATION OPTIONS:
 
   Option 1: One-time use (npx)
-  $ npx antigravity-devkit-vue-aspnet init
+  $ npx antigravity-devkit init
 
   Option 2: Global install (recommended for frequent use)
-  $ npm install -g antigravity-devkit-vue-aspnet
+  $ npm install -g antigravity-devkit
   $ antigravity-devkit init
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -136,7 +136,7 @@ EXAMPLES:
   antigravity-devkit init --force
 
   # Update to latest version
-  npm update -g antigravity-devkit-vue-aspnet
+  npm update -g antigravity-devkit
   antigravity-devkit update
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -153,7 +153,7 @@ AFTER INSTALLATION:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Documentation: https://github.com/yourusername/antigravity-devkit-vue-aspnet
+Documentation: https://github.com/yourusername/antigravity-devkit
 `);
 }
 

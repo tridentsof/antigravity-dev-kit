@@ -5,7 +5,7 @@
 Before publishing, reorganize the folder structure:
 
 ```
-antigravity-devkit-vue-aspnet/
+antigravity-devkit/
 ├── package.json          # npm package config
 ├── bin/
 │   └── cli.js            # CLI tool
@@ -27,8 +27,8 @@ antigravity-devkit-vue-aspnet/
 
 ```bash
 # Create a new folder for the npm package
-mkdir antigravity-devkit-vue-aspnet
-cd antigravity-devkit-vue-aspnet
+mkdir antigravity-devkit
+cd antigravity-devkit
 
 # Copy package files
 cp /path/to/.agent-antigravity/package.json .
@@ -80,7 +80,7 @@ npm publish
 # Test installation in a new project
 mkdir test-project && cd test-project
 npm init -y
-npx antigravity-devkit-vue-aspnet init
+npx antigravity-devkit init
 ```
 
 ---
@@ -130,7 +130,7 @@ If you prefer GitHub Packages:
 ```bash
 # Update package.json
 {
-  "name": "@yourusername/antigravity-devkit-vue-aspnet",
+  "name": "@yourusername/antigravity-devkit",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   }
@@ -153,7 +153,7 @@ Once published, users have two options:
 
 ```bash
 cd my-project
-npx antigravity-devkit-vue-aspnet init
+npx antigravity-devkit init
 ```
 
 Best for: Trying the kit, one-time setup, CI/CD scripts
@@ -162,7 +162,7 @@ Best for: Trying the kit, one-time setup, CI/CD scripts
 
 ```bash
 # Install once globally
-npm install -g antigravity-devkit-vue-aspnet
+npm install -g antigravity-devkit
 
 # Then use in any project
 cd my-project
@@ -187,7 +187,7 @@ Best for: Developers who use the kit frequently
 
 ```bash
 # Update to latest version
-npm update -g antigravity-devkit-vue-aspnet
+npm update -g antigravity-devkit
 
 # Then update in each project
 cd my-project

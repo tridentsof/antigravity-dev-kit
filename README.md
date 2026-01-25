@@ -29,10 +29,10 @@ This kit transforms a general AI assistant into a **specialized development team
 
 ```bash
 # One-time use with npx
-npx antigravity-devkit-vue-aspnet init
+npx antigravity-devkit init
 
 # OR install globally for frequent use
-npm install -g antigravity-devkit-vue-aspnet
+npm install -g antigravity-devkit
 antigravity-devkit init
 ```
 
