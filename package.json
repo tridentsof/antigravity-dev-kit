@@ -1,0 +1,38 @@
+{
+  "name": "antigravity-devkit-vue-aspnet",
+  "version": "1.0.0",
+  "description": "AI DevKit for Vue3 + ASP.NET + Azure development with specialized agents, skills, and workflows",
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/antigravity-devkit-vue-aspnet"
+  },
+  "keywords": [
+    "ai",
+    "devkit",
+    "antigravity",
+    "vue3",
+    "aspnet",
+    "azure",
+    "agents",
+    "workflows",
+    "cursor",
+    "gemini"
+  ],
+  "bin": {
+    "antigravity-devkit": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "template/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "echo '\n✨ Run \"npx antigravity-devkit init\" to set up the kit in your project\n'"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

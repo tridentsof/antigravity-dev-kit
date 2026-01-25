@@ -1,0 +1,115 @@
+---
+name: csharp-patterns
+description: Modern C# best practices and patterns
+---
+
+# C# Patterns
+
+> Modern C# with async/await, nullable, and clean patterns.
+
+---
+
+## Async/Await
+
+```csharp
+// ✅ Correct
+public async Task<User> GetUserAsync(int id)
+{
+    return await _repository.GetByIdAsync(id);
+}
+
+// ❌ Wrong - blocking
+public User GetUser(int id)
+{
+    return _repository.GetByIdAsync(id).Result;
+}
+```
+
+---
+
+## Nullable Reference Types
+
+```csharp
+// Enable in .csproj
+<Nullable>enable</Nullable>
+
+// Usage
+public User? GetUser(int id)  // Can be null
+public User GetRequiredUser(int id)  // Never null
+```
+
+---
+
+## Records
+
+```csharp
+// Immutable data objects
+public record UserDto(int Id, string Name, string Email);
+
+// With modification
+var updated = user with { Name = "New Name" };
+```
+
+---
+
+## Pattern Matching
+
+```csharp
+var result = user switch
+{
+    { Role: "Admin" } => "Full access",
+    { Role: "User" } => "Limited access",
+    null => "No user",
+    _ => "Unknown"
+};
+```
+
+---
+
+## LINQ Best Practices
+
+```csharp
+// ✅ Correct - efficient
+var activeUsers = users
+    .Where(u => u.IsActive)
+    .Select(u => u.Name)
+    .ToList();
+
+// ❌ Wrong - N+1
+foreach (var user in users)
+{
+    var orders = await GetOrdersAsync(user.Id);
+}
+```
+
+---
+
+## Exception Handling
+
+```csharp
+try
+{
+    await ProcessAsync();
+}
+catch (NotFoundException ex)
+{
+    _logger.LogWarning(ex, "Item not found: {Id}", id);
+    throw;
+}
+catch (Exception ex)
+{
+    _logger.LogError(ex, "Unexpected error");
+    throw;
+}
+```
+
+---
+
+## DO / DON'T
+
+| ✅ Do | ❌ Don't |
+|-------|---------|
+| Async all the way | .Result or .Wait() |
+| Nullable types | Ignore null warnings |
+| Records for DTOs | Mutable classes |
+| Pattern matching | Long if-else chains |
