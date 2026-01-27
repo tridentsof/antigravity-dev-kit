@@ -118,3 +118,5 @@ public class ApiResponse<T>
 | Async/await | Blocking calls |
 | DI everywhere | `new` in controllers |
 | Proper status codes | 200 for everything |
+| Constants/Enums for strings | Magic strings |
+| Environment variables/Config | Hardcoded settings |

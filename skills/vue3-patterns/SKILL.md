@@ -183,6 +183,44 @@ module.exports = {
 
 ---
 
+## Constants & Enums
+
+```typescript
+// ✅ Correct: constants/auth.ts
+export enum UserRole {
+  ADMIN = 'admin',
+  USER = 'user'
+}
+
+export const API_ENDPOINTS = {
+  LOGIN: '/auth/login',
+  LOGOUT: '/auth/logout'
+} as const;
+
+// Usage
+if (role === UserRole.ADMIN) { ... }
+```
+
+---
+
+## Configuration Management
+
+```bash
+# ✅ Correct: .env
+VITE_API_URL=https://api.example.com
+VITE_ENABLE_ANALYTICS=true
+```
+
+```typescript
+// src/config.ts
+export const config = {
+  apiUrl: import.meta.env.VITE_API_URL,
+  enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === 'true'
+} as const;
+```
+
+---
+
 ## DO / DON'T
 
 | Do | Don't |
@@ -193,3 +231,5 @@ module.exports = {
 | Tailwind utilities | Inline styles |
 | Custom Tailwind config | Default colors only |
 | Small components | Giant components |
+| Constants/Enums for strings | Magic strings |
+| Env files for config | Hardcoded config |

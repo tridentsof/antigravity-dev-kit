@@ -105,6 +105,44 @@ catch (Exception ex)
 
 ---
 
+## Constants & Enums
+
+```csharp
+// ✅ Correct: Use enums for types
+public enum UserStatus
+{
+    Active,
+    Inactive,
+    Suspended
+}
+
+// ✅ Correct: Use constants for reusable strings
+public static class AppConstants
+{
+    public const string DefaultLanguage = "en-US";
+    public const string ApiVersion = "v1";
+}
+```
+
+---
+
+## Configuration Management
+
+```csharp
+// ✅ Correct: Use IConfiguration or environment variables
+public class MyService
+{
+    private readonly string _apiKey;
+    
+    public MyService(IConfiguration config)
+    {
+        _apiKey = config["ApiSettings:Key"] ?? throw new ArgumentNullException("API Key is missing");
+    }
+}
+```
+
+---
+
 ## DO / DON'T
 
 | ✅ Do | ❌ Don't |
@@ -113,3 +151,5 @@ catch (Exception ex)
 | Nullable types | Ignore null warnings |
 | Records for DTOs | Mutable classes |
 | Pattern matching | Long if-else chains |
+| Constants/Enums for strings | Magic strings |
+| Environment variables/Config | Hardcoded settings |
