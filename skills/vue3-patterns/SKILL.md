@@ -219,6 +219,36 @@ export const config = {
 } as const;
 ```
 
+```
+
+---
+
+## Icons
+
+> **CRITICAL:** Do NOT use emojis as icons. Use professional SVG libraries.
+
+**Recommended Libraries:**
+- [Lucide Vue](https://lucide.dev/guide/packages/lucide-vue-next) (Preferred)
+- [Heroicons](https://heroicons.com/)
+- [Phosphor Icons](https://phosphoricons.com/)
+
+```vue
+<!-- ❌ Wrong: Emoji -->
+<button>🚀 Submit</button>
+
+<!-- ✅ Correct: Lucide Icon -->
+<script setup>
+import { Rocket } from 'lucide-vue-next'
+</script>
+
+<template>
+  <button class="flex items-center gap-2">
+    <Rocket class="w-4 h-4" />
+    <span>Submit</span>
+  </button>
+</template>
+```
+
 ---
 
 ## DO / DON'T
@@ -233,3 +263,4 @@ export const config = {
 | Small components | Giant components |
 | Constants/Enums for strings | Magic strings |
 | Env files for config | Hardcoded config |
+| SVG Icons (Lucide/Heroicons) | Emojis as icons |

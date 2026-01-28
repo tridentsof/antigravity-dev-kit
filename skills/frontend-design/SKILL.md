@@ -132,6 +132,12 @@ All spacing in multiples of 8:
 - [ ] **Shadows** - Meaningful elevation hierarchy
 - [ ] **Texture** - Grain, patterns, not flat colors only
 
+### Professional Iconography
+
+- [ ] **No Emojis** - Use SVG icons (Lucide, Heroicons, Phosphor)
+- [ ] **Consistent Stroke** - Same weight across all icons
+- [ ] **Optical Alignment** - Center visually, not just mathematically
+
 ---
 
 ## 🧐 REALITY CHECK (ANTI-SELF-DECEPTION)
