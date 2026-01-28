@@ -94,3 +94,20 @@ Brief description of what we're building.
 | Order by dependency | Random order |
 | Include verification | Skip testing tasks |
 | Break large tasks | Massive single tasks |
+| Update plan | Forget to mark task as done |
+
+---
+
+## Plan Maintenance
+
+> **CRITICAL:** You MUST update the plan after completing a task.
+
+1. **Read** the plan file.
+2. **Find** the task you just completed.
+3. **Mark** it as done: change `- [ ]` to `- [x]`.
+4. **Resave** the plan file.
+
+```markdown
+Before: - [ ] Create login component
+After:  - [x] Create login component
+```
