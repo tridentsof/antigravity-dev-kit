@@ -143,6 +143,36 @@ public class MyService
 
 ---
 
+---
+
+## File Organization
+
+> **CRITICAL:** One class/interface/enum per file.
+
+```csharp
+// ❌ Wrong: Multiple classes in one file
+public class User { ... }
+public class Order { ... }
+
+// ✅ Correct: Separate files
+// User.cs
+public class User { ... }
+
+// Order.cs
+public class Order { ... }
+```
+
+```csharp
+// ❌ Wrong: Nested classes
+public class User 
+{
+    // Don't do this unless it's a private DTO used ONLY here
+    public class UserConfig { ... }
+}
+```
+
+---
+
 ## DO / DON'T
 
 | ✅ Do | ❌ Don't |
@@ -153,3 +183,4 @@ public class MyService
 | Pattern matching | Long if-else chains |
 | Constants/Enums for strings | Magic strings |
 | Environment variables/Config | Hardcoded settings |
+| One class per file | Multiple classes/Nested |
