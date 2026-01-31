@@ -69,32 +69,46 @@ After installation, start using slash commands:
 
 ## How It Works
 
-```
-User Request
-     ↓
-┌─────────────────────────────────────────────────────┐
-│  rules/GEMINI.md (Always Active)                    │
-│  - Classifies request type                          │
-│  - Routes to appropriate agent                      │
-│  - Enforces global standards                        │
-└─────────────────────────────────────────────────────┘
-     ↓
-┌─────────────────────────────────────────────────────┐
-│  agents/*.md (Specialist Selected)                  │
-│  - Applies domain expertise                         │
-│  - Loads required skills                            │
-│  - Follows agent-specific rules                     │
-└─────────────────────────────────────────────────────┘
-     ↓
-┌─────────────────────────────────────────────────────┐
-│  skills/*/SKILL.md (Knowledge Loaded)               │
-│  - Provides patterns and templates                  │
-│  - Defines best practices                           │
-│  - References additional docs if needed             │
-└─────────────────────────────────────────────────────┘
-     ↓
-Response with specialized knowledge
-```
+![Antigravity DevKit Workflow](./docs/workflow-diagram.png)
+
+### The Complete Flow
+
+**1. User Request** → Everything starts with your request to the AI assistant.
+
+**2. Classification Layer** (`rules/GEMINI.md`)
+   - **Always Active** - This runs before every response
+   - Analyzes your request to determine the type (question, code, design, etc.)
+   - Routes to the most appropriate specialist agent
+   - Enforces global coding standards and best practices
+
+**3. Agent Selection Layer** (`agents/*.md`)
+   - The right specialist is automatically selected based on your request
+   - Available specialists: Frontend, Backend, Database, DevOps, Test Engineer, and more
+   - Each agent brings domain-specific expertise
+   - Agents load their required skills for the task
+
+**4. Skills Loading Layer** (`skills/*/SKILL.md`)
+   - Agents load relevant knowledge modules
+   - Skills include: clean-code, vue3-patterns, aspnet-patterns, azure-devops, testing-patterns, architecture, and more
+   - Each skill provides patterns, templates, and best practices
+   - Skills can reference additional documentation and examples
+
+**5. Output Generation**
+   - AI generates specialized responses using the loaded knowledge
+   - Output types: Code files, Documentation, Tests, Configuration, etc.
+   - All outputs follow the patterns and standards from the loaded skills
+
+### Supporting Components
+
+**Optional Workflows** (Right Panel)
+- Slash commands like `/plan`, `/create`, `/code`, `/test`, `/deploy`
+- These trigger pre-defined multi-step procedures
+- Can be used to streamline common development tasks
+
+**Validation Scripts** (Left Panel)
+- `checklist.py` - Quick validation during development
+- `verify_all.py` - Comprehensive checks before deployment
+- Automatically run after certain operations or manually triggered
 
 ---
 
@@ -301,6 +315,119 @@ python .agent/scripts/verify_all.py . --url http://localhost:3000
 - Tests (pass/fail, coverage)
 - Build (compiles successfully)
 - Dependencies (outdated, vulnerable)
+
+---
+
+## Project Lifecycle
+
+![Project Lifecycle with Antigravity DevKit](./docs/project-lifecycle-diagram.png)
+
+### Understanding the Development Phases
+
+The antigravity-dev-kit supports your entire development lifecycle with specialized workflows for each phase:
+
+#### **Phase 1: Discovery & Planning** 🔍
+**Workflows:** `/brainstorm`, `/plan`
+
+Start here when you have a new feature idea or requirement. The kit helps you:
+- Clarify vague requirements through strategic questions
+- Create detailed task breakdowns
+- Generate a `PLAN-*.md` file for structured implementation
+
+**When to use:**
+- New feature requests
+- Complex requirements that need clarification
+- Architecture decisions
+
+---
+
+#### **Phase 2: Development** 💻
+**Workflows:** `/create` (full feature), `/code` (single task)
+
+Build your features with specialized agents:
+- **Frontend Specialist** - Vue3 components and UI
+- **Backend Specialist** - ASP.NET APIs and services
+- **Database Architect** - SQL schema and queries
+
+**Key features:**
+- Checkpoints for human approval
+- Follows your plan file
+- Multi-agent coordination for complex features
+
+---
+
+#### **Phase 3: Testing** 🧪
+**Workflows:** `/test`  
+**Scripts:** `checklist.py`
+
+Generate comprehensive tests:
+- Unit tests (xUnit for backend, Vitest for frontend)
+- Integration tests
+- Test coverage reports
+
+**Automated checks:**
+- Linting and type checking
+- Code quality validation
+- Test execution
+
+---
+
+#### **Phase 4: Code Review** 🔎
+**Workflows:** `/review`  
+**Agent:** Security Auditor
+
+Get automated code reviews covering:
+- Security vulnerabilities
+- Code quality issues
+- Best practice violations
+- Performance concerns
+
+**Output:** Detailed review report with actionable recommendations
+
+---
+
+#### **Phase 5: Deployment** 🚀
+**Workflows:** `/deploy`  
+**Scripts:** `verify_all.py`
+
+Deploy with confidence:
+- Comprehensive pre-deployment validation
+- Azure DevOps pipeline trigger
+- Deployment verification
+
+**Checks before deploy:**
+- All tests passing
+- No security vulnerabilities
+- Build successful
+- Dependencies up to date
+
+---
+
+#### **Phase 6: Maintenance** 🔧
+**Workflows:** `/debug`, `/status`  
+**Agents:** Debugger, Performance Optimizer
+
+Keep your application healthy:
+- Root cause analysis for bugs
+- Performance optimization
+- System health monitoring
+- Quick fixes and patches
+
+**Continuous improvement:**
+- Monitor application metrics
+- Optimize slow queries
+- Fix production issues
+- Iterate back to Phase 1 for new features
+
+---
+
+### Quick Reference: Common Scenarios
+
+| Scenario | Workflow Path | Duration |
+|----------|--------------|----------|
+| **New Feature** | `/brainstorm` → `/plan` → `/create` → `/test` → `/review` → `/deploy` | Full cycle |
+| **Bug Fix** | `/debug` → `/test` → `/review` → `/deploy` | Fast track |
+| **Quick Task** | `/code` → Done | Immediate |
 
 ---
 

@@ -9,6 +9,23 @@ description: Test strategies and patterns
 
 ---
 
+## Test Planning Workflow (CRITICAL)
+
+> **Protocol:** Plan -> Test -> Mark Done
+
+1. **Create Plan**: List scenarios to test in a markdown list.
+2. **Implement**: Write the test code.
+3. **Verify**: Run the test.
+4. **Update**: Mark as `[x]` in the plan.
+
+**Example Plan:**
+```markdown
+- [ ] User can login with valid credentials
+- [ ] Login fails with invalid password
+```
+
+---
+
 ## Test Pyramid
 
 ```

@@ -133,6 +133,73 @@ export const useUserStore = defineStore('user', () => {
 
 ---
 
+## Architecture Layers
+
+| Layer | Responsibility | Examples |
+|-------|---------------|----------|
+| **View** | Presentation only | LoginView.vue, StudentDashboard.vue |
+| **Composable** | Business logic | useLogin, useAssignmentSubmission |
+| **Service** | API calls | authService, assignmentService |
+| **API** | HTTP requests | api/auth.js, api/assignment.js |
+
+### Proper Flow
+
+```
+View → Composable → Service → API
+```
+
+### ❌ DON'T: Business Logic in Views
+
+```vue
+<!-- BAD: LoginView.vue -->
+<script setup>
+async function handleLogin(formData) {
+  loading.value = true
+  try {
+    const data = await loginApi(formData.email, formData.password)
+    const decoded = jwtDecode(data.token)
+    // ... 60+ lines of logic
+  } catch (e) {
+    // error handling
+  }
+}
+</script>
+```
+
+### ✅ DO: Extract to Composable
+
+```vue
+<!-- GOOD: LoginView.vue -->
+<script setup>
+import { useLogin } from '@/composables/auth/useLogin'
+
+const { login, isLoading } = useLogin()
+</script>
+```
+
+```javascript
+// composables/auth/useLogin.js
+export function useLogin() {
+  const isLoading = ref(false)
+  
+  const login = async (email, password) => {
+    isLoading.value = true
+    try {
+      const data = await authService.login(email, password)
+      // Handle success
+    } catch (error) {
+      // Handle error
+    } finally {
+      isLoading.value = false
+    }
+  }
+  
+  return { login, isLoading }
+}
+```
+
+---
+
 ## Composables
 
 ```typescript
@@ -183,74 +250,6 @@ module.exports = {
 
 ---
 
-## Constants & Enums
-
-```typescript
-// ✅ Correct: constants/auth.ts
-export enum UserRole {
-  ADMIN = 'admin',
-  USER = 'user'
-}
-
-export const API_ENDPOINTS = {
-  LOGIN: '/auth/login',
-  LOGOUT: '/auth/logout'
-} as const;
-
-// Usage
-if (role === UserRole.ADMIN) { ... }
-```
-
----
-
-## Configuration Management
-
-```bash
-# ✅ Correct: .env
-VITE_API_URL=https://api.example.com
-VITE_ENABLE_ANALYTICS=true
-```
-
-```typescript
-// src/config.ts
-export const config = {
-  apiUrl: import.meta.env.VITE_API_URL,
-  enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === 'true'
-} as const;
-```
-
-```
-
----
-
-## Icons
-
-> **CRITICAL:** Do NOT use emojis as icons. Use professional SVG libraries.
-
-**Recommended Libraries:**
-- [Lucide Vue](https://lucide.dev/guide/packages/lucide-vue-next) (Preferred)
-- [Heroicons](https://heroicons.com/)
-- [Phosphor Icons](https://phosphoricons.com/)
-
-```vue
-<!-- ❌ Wrong: Emoji -->
-<button>🚀 Submit</button>
-
-<!-- ✅ Correct: Lucide Icon -->
-<script setup>
-import { Rocket } from 'lucide-vue-next'
-</script>
-
-<template>
-  <button class="flex items-center gap-2">
-    <Rocket class="w-4 h-4" />
-    <span>Submit</span>
-  </button>
-</template>
-```
-
----
-
 ## DO / DON'T
 
 | Do | Don't |
@@ -261,6 +260,7 @@ import { Rocket } from 'lucide-vue-next'
 | Tailwind utilities | Inline styles |
 | Custom Tailwind config | Default colors only |
 | Small components | Giant components |
-| Constants/Enums for strings | Magic strings |
-| Env files for config | Hardcoded config |
-| SVG Icons (Lucide/Heroicons) | Emojis as icons |
+| **Composables for logic** | **Business logic in views** |
+| **View → Composable → Service** | **View → Service directly** |
+| **Reuse existing components** | **Duplicate components** |
+
